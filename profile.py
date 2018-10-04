@@ -60,6 +60,9 @@ for i in range(6):
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
   
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/ssh_setup.sh'"))
+  
   node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'cp /local/repository/source/* /users/gb773994'"))
   
 # Print the RSpec to the enclosing page.
