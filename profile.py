@@ -38,7 +38,7 @@ link = request.LAN("lan")
 for i in range(6):
   if i == 0:
     node = request.XenVM("head")
-    node.routable_control_ip = "true"
+    node.routable_control_ip = "true"   
   elif i == 1:
     node = request.XenVM("metadata")
   elif i == 2:
@@ -65,5 +65,21 @@ for i in range(6):
   
   node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'cp /local/repository/source/* /users/gb773994'"))
   
+  if i == 0 or i == 2:
+    node.addService(pg.Execute(shell="sh", command="yum -y install nfs-utils nfs-utils-lib"))
+    node.addService(pg.Execute(shell="sh", command="sudo /etc/init.d/portmap start"))
+    node.addService(pg.Execute(shell="sh", command="yum -y install portmap"))
+    node.addService(pg.Execute(shell="sh", command="sudo /etc/init.d/nfs start"))
+    #node.addService(pg.Execute(shell="sh", command="chkconfig --level 35 portmap on"))
+    #node.addService(pg.Execute(shell="sh", command="chkconfig --level 35 nfs on"))
+  
+  if i == 0:
+    node.addService(pg.Execute(shell="sh", command="mkdir /software"))
+  if i == 2:
+    node.addService(pg.Execute(shell="sh", command="mkdir /scratch"))
+  
+  if i == 3 or i == 4 or i == 5:
+    node.addService(pg.Execute(shell="sh", command="mkdir /scratch"))
+    
 # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
