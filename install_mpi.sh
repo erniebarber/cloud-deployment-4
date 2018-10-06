@@ -11,5 +11,5 @@ sudo make all install
 echo "export PATH='$PATH:/software/openmpi/3.1.2/bin'" >> /users/gb773994/.bashrc
 echo "export LD_LIBRARY_PATH='$LD_LIBRARY_PATH:/software/openmpi/3.1.2/lib/'" >> /users/gb773994/.bashrc
 cd ..
-sudo rm -Rf openmpi-3.1.2
+#sudo rm -Rf openmpi-3.1.2
 sudo rm -Rf openmpi-3.1.2.tar.gz
