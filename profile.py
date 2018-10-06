@@ -73,7 +73,7 @@ for i in range(6):
   if i == 2:
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'cp /local/repository/source/* /scratch'"))
     node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
-    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'cp /local/repository/export_scratch/exports /etc'"))    
+    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'cp /local/repository/export_scratch/exports /etc/exports'"))    
     
     
   #install mpi on the head node in /software and mount /scratch
@@ -81,7 +81,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
-    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'cp /local/repository/export_software/exports /etc'"))
+    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'cp /local/repository/export_software/exports /etc/exports'"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl restart nfs-server"))
     node.addService(pg.Execute(shell="sh", command="mount -t nfs 192.168.1.2:/scratch /scratch"))
     
