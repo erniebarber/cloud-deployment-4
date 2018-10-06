@@ -74,9 +74,9 @@ for i in range(6):
 #    #node.addService(pg.Execute(shell="sh", command="chkconfig --level 35 nfs on"))
   
   if i == 0:
-    node.addService(pg.Execute(shell="sh", command="mkdir /software"))
+    node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
   if i == 2:
-    node.addService(pg.Execute(shell="sh", command="mkdir /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
 #  
 # if i == 3 or i == 4 or i == 5:
 #    node.addService(pg.Execute(shell="sh", command="mkdir /scratch"))
