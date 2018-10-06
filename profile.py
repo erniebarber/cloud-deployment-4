@@ -60,6 +60,7 @@ for i in range(6):
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/ssh_setup.sh'"))
+  node.addService(pg.Execute(shell="sh", command="sudo systemctl disable firewalld"))
  
   #make directories and set permissions
   if i != 1 and i != 2:
@@ -91,6 +92,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sleep 8m"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/mpi_path_setup.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/mpi_path_setup.sh'"))   
 
 # Print the RSpec to the enclosing page.
