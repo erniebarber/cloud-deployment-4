@@ -71,7 +71,7 @@ for i in range(6):
 
   #setup storage node
   if i == 2:
-    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'cp /local/repository/source/* /scratch'"))
+    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/source/* /scratch'"))
     node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export_scratch/exports /etc/exports'"))    
     
@@ -83,13 +83,13 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export_software/exports /etc/exports'"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl restart nfs-server"))
-    node.addService(pg.Execute(shell="sh", command="sleep 10m"))
-    node.addService(pg.Execute(shell="sh", command="mount -t nfs 192.168.1.2:/scratch /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sleep 7m"))
+    node.addService(pg.Execute(shell="sh", command="mount -t nfs 192.168.1.3:/scratch /scratch"))
     
   if i == 3 or i == 4 or i == 5:
-    node.addService(pg.Execute(shell="sh", command="sleep 10m"))
+    node.addService(pg.Execute(shell="sh", command="sleep 7m"))
     node.addService(pg.Execute(shell="sh", command="mount -t nfs 192.168.1.1:/software /software"))
-    node.addService(pg.Execute(shell="sh", command="mount -t nfs 192.168.1.2:/scratch /scratch"))
+    node.addService(pg.Execute(shell="sh", command="mount -t nfs 192.168.1.3:/scratch /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/mpi_path_setup.sh'"))   
 
 # Print the RSpec to the enclosing page.
