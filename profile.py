@@ -70,7 +70,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /scratch"))
 
   #setup storage node
-  if i == 1:
+  if i == 2:
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'cp /local/repository/source/* /scratch'"))
     node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'cp /local/repository/export_scratch/exports /etc'"))    
