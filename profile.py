@@ -56,13 +56,13 @@ for i in range(6):
   link.addInterface(iface)
   
   #setup automatic ssh permissions
-  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/ssh_setup.sh'"))
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/passwordless.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/passwordless.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/ssh_setup.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/ssh_setup.sh'"))
   node.addService(pg.Execute(shell="sh", command="sudo systemctl disable firewalld"))
  
-  #make directories and set permissions
+  #make directories and set permissions for all nodes
   if i != 1 and i != 2:
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /software"))
@@ -74,27 +74,29 @@ for i in range(6):
   if i == 2:
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/source/* /scratch'"))
     node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
-    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export_scratch/exports /etc/exports'"))
+    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export/export_scratch /etc/exports'"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl restart nfs-server"))
     
     
-  #install mpi on the head node in /software and mount /scratch
+  #install mpi on the head node in /software and mount /scratch 
   if i == 0:
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/install_mpi.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/install_mpi.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
-    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export_software/exports /etc/exports'"))
+    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export/export_software /etc/exports'"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl restart nfs-server"))
     node.addService(pg.Execute(shell="sh", command="sleep 7m"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
     
-  if i == 3 or i == 4 or i == 5:
+  #mount /scratch and /software on each compute node
+  if i > 2:
     node.addService(pg.Execute(shell="sh", command="sleep 8m"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sleep 30m"))
+	#it takes a while for mpi to be installed on the head node so each compute node will pause here for a while until then
+    node.addService(pg.Execute(shell="sh", command="sleep 35m"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/mpi_path_setup.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/mpi_path_setup.sh'"))   
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /local/repository/scripts/mpi_path_setup.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/mpi_path_setup.sh'"))   
 
 # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
