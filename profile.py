@@ -90,8 +90,9 @@ for i in range(6):
     
   if i == 3 or i == 4 or i == 5:
     node.addService(pg.Execute(shell="sh", command="sleep 8m"))
-    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sleep 15m"))
+    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/mpi_path_setup.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/mpi_path_setup.sh'"))   
 
