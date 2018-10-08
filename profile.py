@@ -60,7 +60,11 @@ for i in range(15):
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/ssh_setup.sh'"))
-  node.addService(pg.Execute(shell="sh", command="sudo systemctl disable firewalld"))
+  
+  #deal with firewall
+  node.addService(pg.Execute(shell="sh", command="firewall-cmd --permanent --add-service=nfs"))
+  node.addService(pg.Execute(shell="sh", command="firewall-cmd --permanent --add-service=mountd"))
+  node.addService(pg.Execute(shell="sh", command="firewall-cmd --reload"))
  
   #make directories and set permissions for all nodes
   if i != 1 and i != 2:
