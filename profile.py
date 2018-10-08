@@ -68,6 +68,8 @@ for i in range(15):
   node.addService(pg.Execute(shell="sh", command="sudo firewall-cmd --permanent --add-service=mountd"))
   node.addService(pg.Execute(shell="sh", command="sudo firewall-cmd --reload"))
   
+  
+  node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
   #sudo firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 -s  [server+IP] -j ACCEPT
  
   #make directories and set permissions for all nodes
