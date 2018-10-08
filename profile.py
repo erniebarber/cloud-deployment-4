@@ -35,7 +35,7 @@ request.addTour(tour)
 
 link = request.LAN("lan")
 
-for i in range(12):
+for i in range(15):
   if i == 0:
     node = request.XenVM("head")
     node.routable_control_ip = "true" 
@@ -87,7 +87,7 @@ for i in range(12):
     node.addService(pg.Execute(shell="sh", command="sudo systemctl restart nfs-server"))
     node.addService(pg.Execute(shell="sh", command="sleep 2m"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.3:/scratch    /scratch   nfs defaults 0 0' | sudo tee --append /etc/fstab"))
+    node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.3:/scratch    /scratch  nfs defaults,proto=tcp,port=2049 0 0' | sudo tee --append /etc/fstab"))
         
   #mount /scratch and /software on each compute node
   if i > 2:
@@ -98,8 +98,8 @@ for i in range(12):
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /local/repository/scripts/mpi_path_setup.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/mpi_path_setup.sh'"))   
-    node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.1:/software    /software   nfs defaults 0 0' | sudo tee --append /etc/fstab"))
-    node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.3:/scratch    /scratch   nfs defaults 0 0' | sudo tee --append /etc/fstab"))
+    node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.1:/software    /software  nfs defaults,proto=tcp,port=2049 0 0' | sudo tee --append /etc/fstab"))
+    node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.3:/scratch    /scratch   nfs defaults,proto=tcp,port=2049 0 0' | sudo tee --append /etc/fstab"))
 
 # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
