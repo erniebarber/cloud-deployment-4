@@ -62,9 +62,13 @@ for i in range(15):
   node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/ssh_setup.sh'"))
   
   #deal with firewall
-  node.addService(pg.Execute(shell="sh", command="firewall-cmd --permanent --add-service=nfs"))
-  node.addService(pg.Execute(shell="sh", command="firewall-cmd --permanent --add-service=mountd"))
-  node.addService(pg.Execute(shell="sh", command="firewall-cmd --reload"))
+  node.addService(pg.Execute(shell="sh", command="sudo systemctl enable firewalld"))
+  node.addService(pg.Execute(shell="sh", command="sudo systemctl start firewalld"))
+  node.addService(pg.Execute(shell="sh", command="sudo firewall-cmd --permanent --add-service=nfs"))
+  node.addService(pg.Execute(shell="sh", command="sudo firewall-cmd --permanent --add-service=mountd"))
+  node.addService(pg.Execute(shell="sh", command="sudo firewall-cmd --reload"))
+  
+  #sudo firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 -s  [server+IP] -j ACCEPT
  
   #make directories and set permissions for all nodes
   if i != 1 and i != 2:
