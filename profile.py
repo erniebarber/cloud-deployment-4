@@ -58,8 +58,8 @@ for i in range(6):
   #setup automatic ssh permissions
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/passwordless.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/ssh_setup.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/ssh_setup.sh'"))
+  #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/ssh_setup.sh"))
+  #node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/ssh_setup.sh'"))
   
   #deal with firewall
   node.addService(pg.Execute(shell="sh", command="sudo systemctl disable firewalld"))
