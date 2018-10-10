@@ -91,6 +91,9 @@ cp $PRIVKEY ${CUSTOM_SSHDIR}
 cp $PUBKEY ${CUSTOM_SSHDIR}
 cat $PUBKEY >> ${CUSTOM_SSHDIR}/authorized_keys
 chown -R ${CUSTOM_USER}:${CUSTOM_GROUP} ${CUSTOM_SSHDIR}
-su gb773994 -c 'echo "StrictHostKeyChecking no" > ${CUSTOM_SSHDIR}/config'
+sudo touch /users/gb773994/.ssh/config
+sudo echo "StrictHostKeyChecking no" | sudo tee --append /users/gb773994/.ssh/config
+
+#su gb773994 -c 'echo "StrictHostKeyChecking no" > ${CUSTOM_SSHDIR}/config'
 
 exit 0
