@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
   
   if (rank == 0) {
     piEstimate = (double)(pointsReceived * 4) / nPointsTotal;
-    printf("It took %f seconds to produce: %f\n", piEstimate);
+    printf("It took %f seconds to produce: %f\n", totalTime, piEstimate);
   }  
   
   MPI_Finalize();
