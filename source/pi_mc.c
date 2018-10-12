@@ -15,6 +15,7 @@ int main(int argc, char* argv[]) {
   double x_rand, y_rand, rand_radius; 
   int rank, size, squareWidth;
   MPI_Status status;
+  double start, stop, totalTime; 
 
   nPointsTotal = atoi(argv[1]);
 
@@ -22,6 +23,8 @@ int main(int argc, char* argv[]) {
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
 
+  start = MPI_Wtime();
+  
   // Seed RNG and make calculations for constants
   nPointsPerRegion = nPointsTotal / size;
   srand( (unsigned)time(NULL) + rank ); // seed differently per node
@@ -44,11 +47,15 @@ int main(int argc, char* argv[]) {
   }
   
   MPI_Reduce(&nPointsInCircle, &pointsReceived, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+  
+  stop  = MPI_Wtime();
+  totalTime = stop - start;
+  
   if (rank == 0) {
     piEstimate = (double)(pointsReceived * 4) / nPointsTotal;
-    printf("%f\n", piEstimate);
-  } 
-
+    printf("It took %f seconds to produce: %f\n", piEstimate);
+  }  
+  
   MPI_Finalize();
   return 0;
 }
