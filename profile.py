@@ -58,7 +58,7 @@ for i in range(15):
   #setup automatic ssh permissions
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/passwordless.sh"))
-  #below doesn't work. new ssh solution in in passwordless
+  #below doesn't work. new ssh solution is in passwordless
   #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/ssh_setup.sh"))
   #node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/ssh_setup.sh'"))
   
@@ -69,7 +69,6 @@ for i in range(15):
   #node.addService(pg.Execute(shell="sh", command="sudo firewall-cmd --permanent --add-service=nfs"))
   #node.addService(pg.Execute(shell="sh", command="sudo firewall-cmd --permanent --add-service=mountd"))
   #node.addService(pg.Execute(shell="sh", command="sudo firewall-cmd --reload"))
-  #sudo firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 -s  [server+IP] -j ACCEPT
  
   #make directories and set permissions for all nodes
   if i != 1 and i != 2:
