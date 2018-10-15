@@ -58,9 +58,6 @@ for i in range(15):
   #setup automatic ssh permissions
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/passwordless.sh"))
-  #below doesn't work. new ssh solution is in passwordless
-  #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/ssh_setup.sh"))
-  #node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/ssh_setup.sh'"))
   
   #deal with firewall
   node.addService(pg.Execute(shell="sh", command="sudo systemctl disable firewalld"))
