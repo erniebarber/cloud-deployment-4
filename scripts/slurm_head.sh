@@ -51,19 +51,19 @@ sudo touch /scratch/rpm.fin
 sudo yum --nogpgcheck localinstall slurm-18.08.3-1.el7.centos.x86_64.rpm slurm-devel-18.08.3-1.el7.centos.x86_64.rpm slurm-munge-18.08.3-1.el7.centos.x86_64.rpm slurm-perlapi-18.08.3-1.el7.centos.x86_64.rpm slurm-plugins-18.08.3-1.el7.centos.x86_64.rpm slurm-sjobexit-18.08.3-1.el7.centos.x86_64.rpm slurm-sjstat-18.08.3-1.el7.centos.x86_64.rpm slurm-torque-18.08.3-1.el7.centos.x86_64.rpm
 
 #head configuration
-mkdir /var/spool/slurmctld
-chown slurm: /var/spool/slurmctld
-chmod 755 /var/spool/slurmctld
-touch /var/log/slurmctld.log
-chown slurm: /var/log/slurmctld.log
-touch /var/log/slurm_jobacct.log /var/log/slurm_jobcomp.log
-chown slurm: /var/log/slurm_jobacct.log /var/log/slurm_jobcomp.log
+sudo mkdir /var/spool/slurmctld
+sudo chown slurm: /var/spool/slurmctld
+sudo chmod 755 /var/spool/slurmctld
+sudo touch /var/log/slurmctld.log
+sudo chown slurm: /var/log/slurmctld.log
+sudo touch /var/log/slurm_jobacct.log /var/log/slurm_jobcomp.log
+sudo chown slurm: /var/log/slurm_jobacct.log /var/log/slurm_jobcomp.log
 
 #setup clock
-yum install ntp -y
-chkconfig ntpd on
-ntpdate pool.ntp.org
-systemctl start ntpd
+sudo yum install ntp -y
+sudo chkconfig ntpd on
+sudo ntpdate pool.ntp.org
+sudo systemctl start ntpd
 
 #enable slurm daemon
 while [ ! -f /scratch/d.fin ]
