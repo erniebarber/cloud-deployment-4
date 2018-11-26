@@ -60,6 +60,7 @@ for i in range(6):
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/passwordless.sh"))
   
   #deal with firewall
+  node.addService(pg.Execute(shell="sh", command="sudo systemctl stop firewalld"))
   node.addService(pg.Execute(shell="sh", command="sudo systemctl disable firewalld"))
   #node.addService(pg.Execute(shell="sh", command="sudo systemctl enable firewalld"))
   #node.addService(pg.Execute(shell="sh", command="sudo systemctl start firewalld"))
