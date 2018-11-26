@@ -68,12 +68,11 @@ for i in range(6):
   #node.addService(pg.Execute(shell="sh", command="sudo firewall-cmd --reload"))
  
   #make directories and set permissions for all nodes
-  if i != 1 and i != 2:
+  if i != 2:
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /software"))
-  if i != 1:
-    node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /scratch"))
+  node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /scratch"))
 
   #setup storage node
   if i == 2:
@@ -84,7 +83,6 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl start nfs-server"))
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
-    
     
   #install mpi on the head node in /software and mount /scratch 
   if i == 0:
@@ -102,10 +100,23 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.3:/scratch /scratch nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.3,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/slurm_head.sh"))
     
+  #mount /scratch and /software on metadata node
+  if i = 1:
+    node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
+    node.addService(pg.Execute(shell="sh", command="sleep 28m"))
+    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
+    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm"))
+    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurmdbd.conf /etc/slurm"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /local/repository/scripts/mpi_path_setup.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/mpi_path_setup.sh'"))   
+    node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.1:/software /software nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.1,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
+    node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.3:/scratch /scratch nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.3,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/slurm_metadata.sh"))
+    
   #mount /scratch and /software on each compute node
   if i > 2:
     node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
-    #it takes a while for mpi to be installed on the head node so each compute node will pause here for a while until then
     node.addService(pg.Execute(shell="sh", command="sleep 28m"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
