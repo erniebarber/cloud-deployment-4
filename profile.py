@@ -110,6 +110,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm"))
     node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurmdbd.conf /etc/slurm"))
     node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/scripts/dbd.sql /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/scripts/innodb.cnf /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /local/repository/scripts/mpi_path_setup.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/mpi_path_setup.sh'"))   
     node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.1:/software /software nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.1,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
