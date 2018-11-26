@@ -102,7 +102,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/slurm_head.sh"))
     
   #mount /scratch and /software on metadata node
-  if i = 1:
+  if i == 1:
     node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
     node.addService(pg.Execute(shell="sh", command="sleep 28m"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
