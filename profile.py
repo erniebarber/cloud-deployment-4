@@ -79,8 +79,8 @@ for i in range(6):
   if i == 2:
     node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/source/* /scratch'"))
-    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/dbd.sql /scratch'"))
-    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/innodb.cnf /scratch'"))
+    #node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/dbd.sql /scratch'"))
+    #node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/innodb.cnf /scratch'"))
     node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/export_scratch /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server"))
