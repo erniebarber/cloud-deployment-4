@@ -28,6 +28,11 @@ sudo cp /etc/munge/munge.key /scratch/munge.key
 sudo chown -R munge: /etc/munge/ /var/log/munge/
 chmod 0700 /etc/munge/ /var/log/munge/
 
+while [ ! -f /scratch/metakey.fin ]
+do
+  sleep 10
+done
+
 #start munge service
 sudo systemctl enable munge
 sudo systemctl start munge
