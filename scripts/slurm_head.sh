@@ -41,11 +41,11 @@ sudo systemctl start munge
 sudo yum install openssl openssl-devel pam-devel numactl numactl-devel hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncurses-devel man2html libibmad libibumad -y
 
 #install slurm in the shared folder
-sudo cd /software
+cd /software
 sudo wget http://www.schedmd.com/download/latest/slurm-18.08.3.tar.bz2
 sudo yum install rpm-build
 sudo rpmbuild -ta slurm-18.08.3.tar.bz2
-sudo cd /root/rpmbuild/RPMS/x86_64
+cd /root/rpmbuild/RPMS/x86_64
 
 sudo mkdir /software/slurm-rpms
 sudo cp slurm-18.08.3-1.el7.centos.x86_64.rpm slurm-devel-18.08.3-1.el7.centos.x86_64.rpm slurm-munge-18.08.3-1.el7.centos.x86_64.rpm slurm-perlapi-18.08.3-1.el7.centos.x86_64.rpm slurm-plugins-18.08.3-1.el7.centos.x86_64.rpm slurm-sjobexit-18.08.3-1.el7.centos.x86_64.rpm slurm-sjstat-18.08.3-1.el7.centos.x86_64.rpm slurm-torque-18.08.3-1.el7.centos.x86_64.rpm /software/slurm-rpms
