@@ -59,14 +59,9 @@ for i in range(6):
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/passwordless.sh"))
   
-  #deal with firewall
+  #deal with firewall on all nodes
   node.addService(pg.Execute(shell="sh", command="sudo systemctl stop firewalld"))
   node.addService(pg.Execute(shell="sh", command="sudo systemctl disable firewalld"))
-  #node.addService(pg.Execute(shell="sh", command="sudo systemctl enable firewalld"))
-  #node.addService(pg.Execute(shell="sh", command="sudo systemctl start firewalld"))
-  #node.addService(pg.Execute(shell="sh", command="sudo firewall-cmd --permanent --add-service=nfs"))
-  #node.addService(pg.Execute(shell="sh", command="sudo firewall-cmd --permanent --add-service=mountd"))
-  #node.addService(pg.Execute(shell="sh", command="sudo firewall-cmd --reload"))
  
   #make directories and set permissions for all nodes
   if i != 2:
@@ -79,8 +74,8 @@ for i in range(6):
   if i == 2:
     node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/source/* /scratch'"))
-    #node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/dbd.sql /scratch'"))
-    #node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/innodb.cnf /scratch'"))
+    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/dbd.sql /scratch/dbd.sql'"))
+    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/innodb.cnf /scratch/innodb.cnf'"))
     node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/export_scratch /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server"))
@@ -94,7 +89,8 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/install_mpi.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/export_software /etc/exports"))
-    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm"))
+    node.addService(pg.Execute(shell="sh", command="sudo mkdir /etc/slurm"))
+    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm/slurm.conf"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl start nfs-server"))
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
@@ -108,10 +104,10 @@ for i in range(6):
   if i == 1:
     node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
     node.addService(pg.Execute(shell="sh", command="sleep 28m"))
-    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm"))
     node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurmdbd.conf /etc/slurm"))
+    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /local/repository/scripts/mpi_path_setup.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/mpi_path_setup.sh'"))   
     node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.1:/software /software nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.1,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
@@ -123,9 +119,9 @@ for i in range(6):
   if i > 2:
     node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
     node.addService(pg.Execute(shell="sh", command="sleep 28m"))
+    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
-    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /local/repository/scripts/mpi_path_setup.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/mpi_path_setup.sh'"))   
     node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.1:/software /software nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.1,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
