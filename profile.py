@@ -97,7 +97,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sleep 2m"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.3:/scratch /scratch nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.3,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
-    
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/slurm_head.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/slurm_head.sh"))
     
   #mount /scratch and /software on metadata node
@@ -112,7 +112,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/mpi_path_setup.sh'"))   
     node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.1:/software /software nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.1,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
     node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.3:/scratch /scratch nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.3,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
-    
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/slurm_metadata.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/slurm_metadata.sh"))
     
   #mount /scratch and /software on each compute node
@@ -126,7 +126,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo -H -u gb773994 bash -c '/local/repository/scripts/mpi_path_setup.sh'"))   
     node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.1:/software /software nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.1,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
     node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.3:/scratch /scratch nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.3,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
-    
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/scripts/slurm_compute.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/scripts/slurm_compute.sh"))
     
 # Print the RSpec to the enclosing page.
