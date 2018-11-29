@@ -45,6 +45,8 @@ cd /software
 sudo wget http://www.schedmd.com/download/latest/slurm-18.08.3.tar.bz2
 sudo yum install rpm-build
 sudo rpmbuild -ta slurm-18.08.3.tar.bz2
+sudo yum install perl -y
+sudo yum install 'perl(ExtUtils::MakeMaker)' -y
 cd /root/rpmbuild/RPMS/x86_64
 
 sudo mkdir /software/slurm-rpms
