@@ -3,10 +3,10 @@
 sudo yum install mariadb-server mariadb-devel -y
 
 #create global users
-sudo export MUNGEUSER=991
+export MUNGEUSER=991
 sudo groupadd -g $MUNGEUSER munge
 sudo useradd  -m -c "MUNGE Uid 'N' Gid Emporium" -d /var/lib/munge -u $MUNGEUSER -g munge  -s /sbin/nologin munge
-sudo export SLURMUSER=992
+export SLURMUSER=992
 sudo groupadd -g $SLURMUSER slurm
 sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slurm -u $SLURMUSER -g slurm  -s /bin/bash slurm
 
@@ -24,6 +24,9 @@ sudo cp /scratch/munge.key /etc/munge/munge.key
 #correct permissions
 sudo chown -R munge: /etc/munge/ /var/log/munge/
 sudo chmod 0700 /etc/munge/ /var/log/munge/
+
+sleep 120
+sudo touch /scratch/metakey.fin
 
 #start munge service
 sudo systemctl enable munge
