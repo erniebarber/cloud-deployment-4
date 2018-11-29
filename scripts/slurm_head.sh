@@ -44,9 +44,9 @@ sudo yum install openssl openssl-devel pam-devel numactl numactl-devel hwloc hwl
 cd /software
 sudo wget http://www.schedmd.com/download/latest/slurm-18.08.3.tar.bz2
 sudo yum install rpm-build
-sudo rpmbuild -ta slurm-18.08.3.tar.bz2
 sudo yum install perl -y
 sudo yum install 'perl(ExtUtils::MakeMaker)' -y
+sudo rpmbuild -ta slurm-18.08.3.tar.bz2
 cd /root/rpmbuild/RPMS/x86_64
 
 sudo mkdir /software/slurm-rpms
