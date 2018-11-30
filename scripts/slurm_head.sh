@@ -76,8 +76,8 @@ while [ ! -f /scratch/d.fin ]
 do
   sleep 5
 done
-sudo rm /scratch/d.fin
-sudo rm /scratch/munge.key
+#sudo rm /scratch/d.fin
+#sudo rm /scratch/munge.key
 sudo systemctl enable slurmctld
 sudo systemctl start slurmctld
 
