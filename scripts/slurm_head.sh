@@ -54,7 +54,7 @@ sudo cp /root/rpmbuild/RPMS/x86_64/* /software/slurm-rpms
 
 sudo touch /scratch/rpm.fin
 
-sudo yum --nogpgcheck localinstall /software/slurm-rpms/*
+sudo yum --nogpgcheck localinstall /software/slurm-rpms/* -y
 
 #head configuration
 sudo mkdir /var/spool/slurmctld
