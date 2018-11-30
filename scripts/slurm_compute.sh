@@ -63,7 +63,7 @@ do
 done
 sudo systemctl enable slurmd
 sudo systemctl start slurmd
-sudo rm /scratch/dbd.fin
+#sudo rm /scratch/dbd.fin
 sudo touch /scratch/d.fin
 
 
