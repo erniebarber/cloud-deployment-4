@@ -104,7 +104,7 @@ for i in range(6):
   if i == 1:
     node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
     node.addService(pg.Execute(shell="sh", command="sleep 28m"))
-    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm"))
+    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm/slurm.conf"))
     node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurmdbd.conf /etc/slurm"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
@@ -119,7 +119,7 @@ for i in range(6):
   if i > 2:
     node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
     node.addService(pg.Execute(shell="sh", command="sleep 28m"))
-    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm"))
+    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm/slurm.conf"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /local/repository/scripts/mpi_path_setup.sh"))
