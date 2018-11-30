@@ -39,7 +39,7 @@ while [ ! -f /scratch/rpm.fin ]
 do
   sleep 10
 done
-sudo yum --nogpgcheck localinstall /software/slurm-rpms/*
+sudo yum --nogpgcheck localinstall /software/slurm-rpms/* -y
 
 #metadata configuration
 sudo mkdir /var/spool/slurmdbd
