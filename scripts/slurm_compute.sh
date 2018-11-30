@@ -41,7 +41,7 @@ do
   sleep 10
 done
 
-sudo yum --nogpgcheck localinstall /software/slurm-rpms/*
+sudo yum --nogpgcheck localinstall /software/slurm-rpms/* -y
 
 #compute configuration
 sudo mkdir /var/spool/slurmd
