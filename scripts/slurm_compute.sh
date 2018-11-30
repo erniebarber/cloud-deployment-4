@@ -41,8 +41,7 @@ do
   sleep 10
 done
 
-cd /software/slurm-rpms
-sudo yum --nogpgcheck localinstall slurm-18.08.3-1.el7.centos.x86_64.rpm slurm-devel-18.08.3-1.el7.centos.x86_64.rpm slurm-munge-18.08.3-1.el7.centos.x86_64.rpm slurm-perlapi-18.08.3-1.el7.centos.x86_64.rpm slurm-plugins-18.08.3-1.el7.centos.x86_64.rpm slurm-sjobexit-18.08.3-1.el7.centos.x86_64.rpm slurm-sjstat-18.08.3-1.el7.centos.x86_64.rpm slurm-torque-18.08.3-1.el7.centos.x86_64.rpm
+sudo yum --nogpgcheck localinstall /software/slurm-rpms/*
 
 #compute configuration
 sudo mkdir /var/spool/slurmd
