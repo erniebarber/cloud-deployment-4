@@ -47,14 +47,14 @@ sudo yum install rpm-build
 sudo yum install perl -y
 sudo yum install 'perl(ExtUtils::MakeMaker)' -y
 sudo rpmbuild -ta slurm-18.08.3.tar.bz2
-cd /root/rpmbuild/RPMS/x86_64
+#cd /root/rpmbuild/RPMS/x86_64
 
 sudo mkdir /software/slurm-rpms
-sudo cp slurm-18.08.3-1.el7.centos.x86_64.rpm slurm-devel-18.08.3-1.el7.centos.x86_64.rpm slurm-munge-18.08.3-1.el7.centos.x86_64.rpm slurm-perlapi-18.08.3-1.el7.centos.x86_64.rpm slurm-plugins-18.08.3-1.el7.centos.x86_64.rpm slurm-sjobexit-18.08.3-1.el7.centos.x86_64.rpm slurm-sjstat-18.08.3-1.el7.centos.x86_64.rpm slurm-torque-18.08.3-1.el7.centos.x86_64.rpm /software/slurm-rpms
+sudo cp /root/rpmbuild/RPMS/x86_64/* /software/slurm-rpms
 
 sudo touch /scratch/rpm.fin
 
-sudo yum --nogpgcheck localinstall slurm-18.08.3-1.el7.centos.x86_64.rpm slurm-devel-18.08.3-1.el7.centos.x86_64.rpm slurm-munge-18.08.3-1.el7.centos.x86_64.rpm slurm-perlapi-18.08.3-1.el7.centos.x86_64.rpm slurm-plugins-18.08.3-1.el7.centos.x86_64.rpm slurm-sjobexit-18.08.3-1.el7.centos.x86_64.rpm slurm-sjstat-18.08.3-1.el7.centos.x86_64.rpm slurm-torque-18.08.3-1.el7.centos.x86_64.rpm
+sudo yum --nogpgcheck localinstall /software/slurm-rpms/*
 
 #head configuration
 sudo mkdir /var/spool/slurmctld
