@@ -50,7 +50,7 @@ sudo mkdir /var/spool/slurmdbd
 sudo chown slurm: /var/spool/slurmdbd
 sudo chmod 755 /var/spool/slurmdbd
 sudo touch /var/log/slurm/slurmdbd.log
-sudo chown slurm: /var/log/slurm/slurmdbd.log
+sudo chown slurm: /var/log/slurmdbd.log
 sudo touch /var/run/slurmdbd.pid
 sudo chown slurm: /var/run/slurmdbd.pid
 sudo cp /scratch/innodb.cnf /etc/my.cnf.d/innodb.cnf
