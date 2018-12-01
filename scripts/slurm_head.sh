@@ -26,7 +26,7 @@ sudo cp /etc/munge/munge.key /scratch/munge.key
 
 #correct permissions
 sudo chown -R munge: /etc/munge/ /var/log/munge/
-chmod 0700 /etc/munge/ /var/log/munge/
+sudo chmod 0700 /etc/munge/ /var/log/munge/
 
 while [ ! -f /scratch/metakey.fin ]
 do
