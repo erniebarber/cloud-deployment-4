@@ -65,6 +65,8 @@ sudo touch /var/log/slurmctld.log
 sudo chown slurm: /var/log/slurmctld.log
 sudo touch /var/log/slurm_jobacct.log /var/log/slurm_jobcomp.log
 sudo chown slurm: /var/log/slurm_jobacct.log /var/log/slurm_jobcomp.log
+sudo touch /var/run/slurmctld
+sudo chmod 777 /var/run/slurmctld
 
 #setup clock
 sudo yum install ntp -y
