@@ -44,6 +44,7 @@ done
 sudo yum --nogpgcheck localinstall /software/slurm-rpms/* -y
 
 #compute configuration
+sudo cp /scratch/slurm.conf /etc/slurm/slurm.conf
 sudo mkdir /var/spool/slurmd
 sudo chown slurm: /var/spool/slurmd
 sudo chmod 755 /var/spool/slurmd
