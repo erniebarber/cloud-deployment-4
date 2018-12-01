@@ -69,16 +69,6 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /software"))
   node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
   node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /scratch"))
-
-  metadata:
-        node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm/slurm.conf"))
-    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurmdbd.conf /etc/slurm"))
-    
-    head:
-          node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm/slurm.conf"))
-        
-     compute:
-      node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/export/slurm.conf /etc/slurm/slurm.conf"))
   
   #setup storage node
   if i == 2:
