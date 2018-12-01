@@ -57,6 +57,7 @@ sudo touch /scratch/rpm.fin
 sudo yum --nogpgcheck localinstall /software/slurm-rpms/* -y
 
 #head configuration
+sudo cp /scratch/slurm.conf /etc/slurm/slurm.conf
 sudo mkdir /var/spool/slurmctld
 sudo chown slurm: /var/spool/slurmctld
 sudo chmod 755 /var/spool/slurmctld
