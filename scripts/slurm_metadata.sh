@@ -20,6 +20,8 @@ do
   sleep 5
 done
 sudo cp /scratch/munge.key /etc/munge/munge.key
+sudo chown munge: /etc/munge/munge.key
+sudo chmod 400 /etc/munge/munge.key
 
 #correct permissions
 sudo chown -R munge: /etc/munge/ /var/log/munge/
