@@ -9,10 +9,9 @@ echo $SLURM_SUBMIT_DIR
 module load /software/mpi/gcc_open
 
 cd /scratch
-mpicc /scratch/pi_mc.c
+mpicc -lm /scratch/pi_mc.c
 
-for i in {2..12..2} 
-do 
-echo "With ${i} processes"
- time mpirun -np $i ./a.out
+for i in {2..12..2} do 
+  echo "With ${i} processes"
+  time mpirun -np $i ./a.out
 done
