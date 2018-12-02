@@ -59,16 +59,8 @@ sudo chown slurm: /etc/my.cnf.d/innodb.cnf
 #setup mariedb
 sudo systemctl start mariadb 
 sudo systemctl enable mariadb 
-sudo /usr/bin/mysql_secure_installation<<EOF
-y
-secret
-secret
-y
-y
-y
-y
-EOF
 
+sudo mysql  -sfu root < "/scratch/setup.sql"
 sudo mysql "-psecret" < "/scratch/dbd.sql"
 
 #setup clock
