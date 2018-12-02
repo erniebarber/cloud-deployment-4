@@ -49,12 +49,15 @@ sudo cp /scratch/slurmdbd.conf /etc/slurm/slurmdbd.conf
 sudo mkdir /var/spool/slurmdbd
 sudo chown slurm: /var/spool/slurmdbd
 sudo chmod 755 /var/spool/slurmdbd
-sudo touch /var/log/slurm/slurmdbd.log
+sudo touch /var/log/slurmdbd.log
 sudo chown slurm: /var/log/slurmdbd.log
+sudo chmod 755 /var/log/slurmdbd.log
 sudo touch /var/run/slurmdbd.pid
 sudo chown slurm: /var/run/slurmdbd.pid
+sudo shmod 755 /var/run/slurmdbd.pid
 sudo cp /scratch/innodb.cnf /etc/my.cnf.d/innodb.cnf
 sudo chown slurm: /etc/my.cnf.d/innodb.cnf
+sudo chmod 755 /etc/my.cnf.d/innodb.cnf
 
 #setup mariedb
 sudo systemctl start mariadb 
