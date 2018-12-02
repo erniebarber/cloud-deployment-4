@@ -75,6 +75,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/source/* /scratch'"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/dbd.sql /scratch/dbd.sql'"))
+    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/setup.sql /scratch/setup.sql'"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export/innodb.cnf /scratch/innodb.cnf'"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export/slurmdbd.conf /scratch/slurmdbd.conf'"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export/slurm.conf /scratch/slurm.conf'"))
