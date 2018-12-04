@@ -79,10 +79,24 @@ while [ ! -f /scratch/d.fin ]
 do
   sleep 5
 done
-#sudo rm /scratch/d.fin
-#sudo rm /scratch/munge.key
 sudo systemctl enable slurmctld
 sudo systemctl start slurmctld
+
+#notify metadata slurmctld daemon is up
+sudo touch /scratch/head.fin
+
+#wait for callback from metadata
+while [ ! -f /scratch/cluster.fin ]
+do
+  sleep 5
+done
+
+#restart slurmctld daemon
+sudo systemctl restart slurmctld
+
+#remove setup files
+cd /scratch
+sudo rm d.fin dbd.fin dbd.sql innodb.cnf metakey.fin munge.key rpm.fin setup.sql slurm.conf slurmdbd.conf
 
 
 
