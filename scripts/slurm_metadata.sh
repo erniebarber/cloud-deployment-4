@@ -75,6 +75,9 @@ sudo systemctl start ntpd
 #enable slurm daemon
 sudo systemctl enable slurmdbd
 sudo systemctl start slurmdbd
+
+#add cluster
+sudo sacctmgr add cluster cluster -y
 sudo touch /scratch/dbd.fin
 
 
