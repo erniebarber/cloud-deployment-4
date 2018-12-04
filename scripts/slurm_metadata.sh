@@ -76,8 +76,20 @@ sudo systemctl start ntpd
 sudo systemctl enable slurmdbd
 sudo systemctl start slurmdbd
 
+#notify all other nodes that slurmdbd daemon is up
+sudo touch /scratch/dbd.fin
+
+#wait for callback from head node
+while [ ! -f /scratch/head.fin ]
+do
+  sleep 5
+done
+
 #add cluster
 yes | sudo sacctmgr add cluster cluster
-sudo touch /scratch/dbd.fin
+
+#notify head node cluster has been added
+sudo touch /scratch/cluster.fin
+
 
 
