@@ -77,7 +77,7 @@ sudo systemctl enable slurmdbd
 sudo systemctl start slurmdbd
 
 #add cluster
-sudo sacctmgr add cluster cluster -y
+yes | sudo sacctmgr add cluster cluster
 sudo touch /scratch/dbd.fin
 
 
