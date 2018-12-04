@@ -77,7 +77,7 @@ for i in range(15):
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/dbd.sql /scratch/dbd.sql'"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/setup.sql /scratch/setup.sql'"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export/innodb.cnf /scratch/innodb.cnf'"))
-    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export/sbatch.sh /scratch/sbatch.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/scripts/sbatch.sh /scratch/sbatch.sh'"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export/slurmdbd.conf /scratch/slurmdbd.conf'"))
     node.addService(pg.Execute(shell="sh", command="sudo su gb773994 -c 'sudo cp /local/repository/export/slurm.conf /scratch/slurm.conf'"))
     node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
